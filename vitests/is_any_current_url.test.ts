@@ -2,7 +2,7 @@ import { useRoute } from 'nuxt/app'
 import type { Mock } from 'vitest'
 import { beforeEach, expect, it, vi } from 'vitest'
 
-import * as atomic from 'atomic'
+import * as nucleify from 'nucleify'
 
 vi.mock('nuxt/app', async (importOriginal): Promise<Mock> => {
   return {
@@ -20,7 +20,7 @@ it('returns true when any of the urls matches current route', (): void => {
 
   const urls: string[] = ['/home', '/dashboard']
 
-  expect(atomic.isAnyCurrentUrl(urls)).toBe(true)
+  expect(nucleify.isAnyCurrentUrl(urls)).toBe(true)
 })
 
 it('returns false when none of the urls match current route', (): void => {
@@ -28,5 +28,5 @@ it('returns false when none of the urls match current route', (): void => {
 
   const urls: string[] = ['/home', '/dashboard']
 
-  expect(atomic.isAnyCurrentUrl(urls)).toBe(false)
+  expect(nucleify.isAnyCurrentUrl(urls)).toBe(false)
 })

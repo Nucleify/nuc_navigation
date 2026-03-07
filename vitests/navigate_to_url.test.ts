@@ -1,6 +1,6 @@
 import { beforeEach, expect, it } from 'vitest'
 
-import * as atomic from 'atomic'
+import * as nucleify from 'nucleify'
 
 beforeEach((): void => {
   Object.defineProperty(window, 'location', {
@@ -13,7 +13,7 @@ beforeEach((): void => {
 it('navigates to specified URL', (): void => {
   const testUrl: string = '/home'
 
-  atomic.navigateToUrl(testUrl)
+  nucleify.navigateToUrl(testUrl)
 
   expect(window.location.href).toBe(testUrl)
 })

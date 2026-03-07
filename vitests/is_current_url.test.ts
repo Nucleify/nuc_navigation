@@ -2,7 +2,7 @@ import { useRoute } from 'nuxt/app'
 import type { Mock } from 'vitest'
 import { beforeEach, expect, it, vi } from 'vitest'
 
-import * as atomic from 'atomic'
+import * as nucleify from 'nucleify'
 
 vi.mock('nuxt/app', async (importOriginal): Promise<Mock> => {
   return {
@@ -20,7 +20,7 @@ it('returns true when route includes given URL', (): void => {
 
   const testUrl: string = '/home'
 
-  expect(atomic.isCurrentUrl(testUrl)).toBe(true)
+  expect(nucleify.isCurrentUrl(testUrl)).toBe(true)
 })
 
 it('returns false when route does not include given URL', (): void => {
@@ -28,5 +28,5 @@ it('returns false when route does not include given URL', (): void => {
 
   const testUrl: string = '/home'
 
-  expect(atomic.isCurrentUrl(testUrl)).toBe(false)
+  expect(nucleify.isCurrentUrl(testUrl)).toBe(false)
 })
