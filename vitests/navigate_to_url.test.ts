@@ -1,19 +1,23 @@
-import { beforeEach, expect, it } from 'vitest'
+import { beforeEach, expect, it, vi } from 'vitest'
 
 import * as nucleify from 'nucleify'
 
 beforeEach((): void => {
   Object.defineProperty(window, 'location', {
-    value: { href: '' },
+    value: {
+      pathname: '/',
+      href: '',
+      assign: vi.fn(),
+    },
     writable: true,
     configurable: true,
   })
 })
 
 it('navigates to specified URL', (): void => {
-  const testUrl: string = '/home'
+  const testUrl = '/home'
 
   nucleify.navigateToUrl(testUrl)
 
-  expect(window.location.href).toBe(testUrl)
+  expect(window.location.assign).toHaveBeenCalledWith(testUrl)
 })

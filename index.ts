@@ -1,10 +1,6 @@
-/**
- *  Module's main file export
- */
 export * from './nuc_navigation'
 
-/**
- *  Folders exports
- */
-export * from './components'
-export * from './utils'
+export { default as NucNavigationBackButton } from './components/back-button.vue'
+export * from './utils/is_any_current_url'
+export * from './utils/is_current_url'
+export * from './utils/navigate_to_url'

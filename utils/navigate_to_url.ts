@@ -1,3 +1,4 @@
 export function navigateToUrl(url: string): void {
-  window.location.href = url
+  if (typeof window === 'undefined') return
+  window.location.assign(url)
 }

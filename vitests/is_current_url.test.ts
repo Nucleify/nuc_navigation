@@ -1,32 +1,23 @@
-import { useRoute } from 'nuxt/app'
-import type { Mock } from 'vitest'
-import { beforeEach, expect, it, vi } from 'vitest'
+import { beforeEach, expect, it } from 'vitest'
 
 import * as nucleify from 'nucleify'
 
-vi.mock('nuxt/app', async (importOriginal): Promise<Mock> => {
-  return {
-    ...(await importOriginal<typeof import('nuxt/app')>()),
-    useRoute: vi.fn(),
-  }
-})
-
 beforeEach((): void => {
-  vi.clearAllMocks()
+  Object.defineProperty(window, 'location', {
+    value: { pathname: '/' },
+    writable: true,
+    configurable: true,
+  })
 })
 
 it('returns true when route includes given URL', (): void => {
-  ;(useRoute as vi.Mock).mockReturnValue({ path: '/home/dashboard' })
+  window.location.pathname = '/home/dashboard'
 
-  const testUrl: string = '/home'
-
-  expect(nucleify.isCurrentUrl(testUrl)).toBe(true)
+  expect(nucleify.isCurrentUrl('/home')).toBe(true)
 })
 
 it('returns false when route does not include given URL', (): void => {
-  ;(useRoute as vi.Mock).mockReturnValue({ path: '/about' })
+  window.location.pathname = '/about'
 
-  const testUrl: string = '/home'
-
-  expect(nucleify.isCurrentUrl(testUrl)).toBe(false)
+  expect(nucleify.isCurrentUrl('/home')).toBe(false)
 })

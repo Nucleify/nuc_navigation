@@ -7,3 +7,7 @@
     text
   />
 </template>
+
+<style lang="scss">
+@import 'index';
+</style>
